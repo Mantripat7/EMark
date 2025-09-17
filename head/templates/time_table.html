@@ -1,0 +1,916 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>Time Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Myra Studio" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico'%}">
+
+    <!-- third party css -->
+    <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css'%}"
+        rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <!-- third party css end -->
+
+    <!-- App css -->
+    <link href="{% static 'assets/css/style.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.min.css'%}" rel="stylesheet" type="text/css">
+    <script src="{% static 'assets/js/config.js'%}"></script>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="layout-wrapper">
+
+        <!-- ========== Left Sidebar ========== -->
+        <div class="main-menu">
+            <!-- Brand Logo -->
+            <div class="logo-box">
+                <!-- Brand Logo Light -->
+                <a href="/admin-home/" class="logo-light">
+                    <i class="mdi mdi-36px mdi-book-education text-white logo-sm"></i>
+                    <h1 class="logo-lg">Admin </h1>
+                </a>
+
+                <!-- Brand Logo Dark -->
+                <a href="/admin-home/" class="logo-dark">
+                    <h1 class="logo-lg">Admin</h1>
+                </a>
+            </div>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="app-menu">
+
+
+
+                    <li class="menu-item">
+                        <a href="/admin-home/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bx-home-smile"></i></span>
+                            <span class="menu-text"> Dashboards </span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="menu-item">
+                        <a href="/teacher-details/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-account-group-outline text-white logo-sm"></i></span>
+                            <span class="menu-text"> Teacher Details </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/time-table/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-calendar-clock text-white logo-sm"></i></span>
+                            <span class="menu-text"> Time Table </span>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+
+            <!-- ========== Topbar Start ========== -->
+            <div class="navbar-custom">
+                <div class="topbar">
+                    <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
+
+                        <!-- Brand Logo -->
+                        <div class="logo-box">
+                            <!-- Brand Logo Light -->
+                            <a href="index.html" class="logo-light">
+                                <img src="{%static 'assets/images/logo-light.png'%}" alt="logo" class="logo-lg"
+                                    height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm"
+                                    height="22">
+                            </a>
+
+                            <!-- Brand Logo Dark -->
+                            <a href="index.html" class="logo-dark">
+                                <img src="{% static 'assets/images/logo-dark.png'%}" alt="dark logo" class="logo-lg"
+                                    height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm"
+                                    height="22">
+                            </a>
+                        </div>
+
+                        <!-- Sidebar Menu Toggle Button -->
+                        <button class="button-toggle-menu">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </div>
+
+                    <ul class="topbar-menu d-flex align-items-center gap-4">
+
+                        <li class="d-none d-md-inline-block">
+                            <a class="nav-link" href="#" data-bs-toggle="fullscreen">
+                                <i class="mdi mdi-fullscreen font-size-24"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <i class="mdi mdi-magnify font-size-24"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="search" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="nav-link" id="theme-mode">
+                            <i class="bx bx-moon font-size-24"></i>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- ========== Topbar End ========== -->
+
+            <div class="px-3">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            {% if messages %}
+                            <div class="alert alert-secondary" role="alert">
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="card">
+                                <div class="card-body">
+
+                                    {% if num == 1 %}
+                                    <button type="button"
+                                    class="btn btn-warning rounded-pill waves-effect waves-light mb-4 p-3"
+                                    data-bs-toggle="modal" data-bs-target="#con-close-modal">
+                                    Update Time Table
+                                </button>
+                                    {% elif num == 0 %}
+                                    <button type="button"
+                                    class="btn btn-warning rounded-pill waves-effect waves-light mb-4 p-3"
+                                    data-bs-toggle="modal" data-bs-target="#con-close-modal">
+                                    Add Time Table
+                                </button>
+                                    {% else %}
+                                        <h1>Goodbye</h1>
+                                    {% endif %} 
+
+                                    <!-- Update time table modal -->
+                                    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Update Time Table Details</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-4">
+
+
+                                                    <form action="/time-table/{{data.id}}" method="post">
+
+                                                        {% csrf_token %}
+                                                        <!-- Heading Row -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex mb-4">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Heading" value="{{data.day}}" name="day"  >
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" value="{{data.time1}}" name="time1">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" value="{{data.time2}}" name="time2">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" value="{{data.time3}}" name="time3">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" value="{{data.time4}}" name="time4">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" value="{{data.time5}}" name="time5">
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        
+                                                        <!-- Row 5 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="{{data.monday}}" name="monday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name"  value="{{data.subject1}}" name="subject1">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject2}}" name="subject2">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject3}}" name="subject3">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject4}}" name="subject4">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject5}}" name="subject5">
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <!-- Row 1 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY"  name="tuesday" value="{{data.tuesday}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject6" value="{{data.subject6}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject7}}" name="subject7">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject8" value="{{data.subject8}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject9" value="{{data.subject9}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject10" value="{{data.subject10}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 2 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="{{data.wednesday}}"
+                                                                    name="wednesday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject11" value="{{data.subject11}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject12" value="{{data.subject12}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject13" value="{{data.subject13}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject14" value="{{data.subject14}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject15" value="{{data.subject15}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 3 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="{{data.tuesday}}" name="thursday" >
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject16" value="{{data.subject16}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject17" value="{{data.subject17}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject18" value="{{data.subject18}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject19" value="{{data.subject19}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject20" value="{{data.subject20}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 4 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="{{data.friday}}" name="friday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject21" value="{{data.subject21}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject22" value="{{data.subject22}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject23" value="{{data.subject23}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject24" value="{{data.subject24}}">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" value="{{data.subject25}}" name="subject25">
+                                                            </div>
+
+                                                        </div>
+
+
+
+
+
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary waves-effect"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit"
+                                                                class="btn btn-info waves-effect waves-light">Save
+                                                                changes</button>
+                                                        </div>
+                                                    </form>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add time talble modal -->
+                                    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Fill Time Table Details</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-4">
+
+
+                                                    <form action="/time-table/" method="post">
+
+                                                        {% csrf_token %}
+                                                        <!-- Heading Row -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex mb-4">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Heading" value="Day" name="day"  >
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" name="time1">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" name="time2">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" name="time3">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" name="time4">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Time" name="time5">
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        
+                                                        <!-- Row 5 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="Monday" name="monday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name"  name="subject1">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject2">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject3">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject4">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject5">
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <!-- Row 1 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="Tuesday" name="tuesday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject6">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject7">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject8">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject9">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject10">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 2 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="Wednesday"
+                                                                    name="wednesday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject11">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject12">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject13">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject14">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject15">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 3 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="Thursday" name="thursday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject16">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject17">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject18">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject19">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject20">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- Row 4 -->
+                                                        <div
+                                                            class="row justify-content-center align-items-center d-flex my-3">
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="DAY" value="Friday" name="friday">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject21">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject22">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject23">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject24">
+                                                            </div>
+
+                                                            <div class="col-2">
+                                                                <input type="text" class="form-control"  
+                                                                    placeholder="Subject Name" name="subject25">
+                                                            </div>
+
+                                                        </div>
+
+
+
+
+
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary waves-effect"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit"
+                                                                class="btn btn-info waves-effect waves-light">Save
+                                                                changes</button>
+                                                        </div>
+                                                    </form>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <table id="datatable-buttons"
+                                            class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>{{data.day}}</th>
+                                                    <th>{{data.time1}}</th>
+                                                    <th>{{data.time2}}</th>
+                                                    <th>{{data.time3}}</th>
+                                                    <th>{{data.time4}}</th>
+                                                    <th>{{data.time5}}</th>
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody >
+                                                <tr>
+                                                    <td>
+                                                        1
+                                                    </td>
+                                                    <td>
+                                                        {{data.monday}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject1}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject2}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject3}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject4}}
+                                                    </td>
+                                                    <td>
+                                                         {{data.subject5}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        2
+                                                    </td>
+                                                    <td>
+                                                        {{data.tuesday}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject6}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject7}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject8}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject9}}
+                                                    </td>
+                                                    <td>
+                                                         {{data.subject10}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        3
+                                                    </td>
+                                                    <td>
+                                                        {{data.wednesday}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject11}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject12}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject13}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject14}}
+                                                    </td>
+                                                    <td>
+                                                         {{data.subject15}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        4
+                                                    </td>
+                                                    <td>
+                                                        {{data.thursday}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject16}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject17}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject18}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject19}}
+                                                    </td>
+                                                    <td>
+                                                         {{data.subject20}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        5
+                                                    </td>
+                                                    <td>
+                                                        {{data.friday}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject21}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject22}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject23}}
+                                                    </td>
+                                                    <td>
+                                                        {{data.subject24}}
+                                                    </td>
+                                                    <td>
+                                                         {{data.subject25}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+
+                    </div> <!-- content -->
+
+
+                </div>
+                <!-- End Page content -->
+
+
+            </div>
+            <!-- END wrapper -->
+
+            <!-- App js -->
+            <script src="{%static 'assets/js/vendor.min.js'%}"></script>
+            <script src="{% static 'assets/js/app.js'%}"></script>
+
+            <!-- third party js -->
+            <script src="{%static 'assets/libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+            <script
+                src="{% static 'assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+            <script src="{%static 'assets/libs/datatables.net-buttons/js/buttons.flash.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js'%}"></script>
+            <script src="{% static 'assets/libs/datatables.net-select/js/dataTables.select.min.js'%}"></script>
+            <script src="{% static 'assets/libs/pdfmake/build/pdfmake.min.js'%}"></script>
+            <script src="{% static 'assets/libs/pdfmake/build/vfs_fonts.js'%}"></script>
+            <!-- third party js ends -->
+
+            <!-- Datatables js -->
+            <script src="{%static 'assets/js/pages/datatables.js'%}"></script>
+
+            <!-- <script data-time_table_records="{{ time_table_records }}">
+                heading = document.getElementById("heading")
+                table_body = document.getElementById("table_body")
+                const data = document.currentScript.dataset;
+                const time_table_records = data.time_table_records;
+                new_data = JSON.parse(time_table_records)
+                console.log(new_data);
+                unique_start_time = [new Set(new_data.map(item => item.start_time))]
+                unique_end_time = [new Set(new_data.map(item => item.end_time))]
+                unique_day = [new Set(new_data.map(item => item.day))]
+                unique_teacher = [new Set(new_data.map(item => item.teacher))]
+                unique_subject = [new Set(new_data.map(item => item.subject))]
+                // console.log(unique_end_time);
+                set_array = [unique_start_time, unique_end_time, unique_day, unique_teacher, unique_subject]
+                data_array = []
+                for (let i = 0; i < set_array.length; i++) {
+                    set_array[i].forEach(element => {
+                        data_array[i] = Array.from(element)
+                    });
+                }
+                // console.log(data_array);
+
+                // adding th tags
+                for (let i = 0; i < data_array[0].length; i++) {
+                    heading.innerHTML += "<th>" + data_array[0][i] + "-" + data_array[1][i] + "</th>"
+                }
+
+                // adding tr tags
+                var index_array = []
+                for (let j = 0; j < data_array[2].length; j++) {
+                    index_array.splice(0, index_array.length);
+                    for (let index = 0; index < new_data.length; index++) {
+                        if (new_data[index].day == data_array[2][j]) {
+                            index_array.push(new_data[index].subject)
+                        }
+                    }
+                    console.log(index_array);
+                    table_body.innerHTML += "<td>" + data_array[2][j] + "</td><td>" + index_array[0] + "</td><td>" + index_array[1] + "</td><td>" + index_array[2] + "</td><td>" + index_array[3] + "</td>"
+                }
+                console.log(table_body.innerHTML);
+
+
+
+                // for (let i = 0; i < new_data.length; i++) {
+                //     table_body.innerHTML += "<tr><td>"+new_data[i].roll_no+"</td><td>"+new_data[i].attend+"</td></tr>"
+                // }
+
+
+            </script> -->
+</body>
+</html>

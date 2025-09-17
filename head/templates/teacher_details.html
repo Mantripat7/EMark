@@ -1,0 +1,392 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
+
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>Teachers | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Myra Studio" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico'%}">
+
+    <!-- third party css -->
+    <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css'%}"
+        rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <!-- third party css end -->
+
+    <!-- App css -->
+    <link href="{% static 'assets/css/style.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.min.css'%}" rel="stylesheet" type="text/css">
+    <script src="{% static 'assets/js/config.js'%}"></script>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="layout-wrapper">
+
+        <!-- ========== Left Sidebar ========== -->
+        <div class="main-menu">
+            <!-- Brand Logo -->
+            <div class="logo-box">
+                <!-- Brand Logo Light -->
+                <a href="/admin-homoe/" class="logo-light">
+                    <i class="mdi mdi-36px mdi-book-education text-white logo-sm"></i>
+                    <h1 class="logo-lg">Admin </h1>
+                </a>
+
+                <!-- Brand Logo Dark -->
+                <a href="/admin-home/" class="logo-dark">
+                    <h1 class="logo-lg">Admin</h1>
+                </a>
+            </div>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="app-menu">
+
+
+
+                    <li class="menu-item">
+                        <a href="/admin-home/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bx-home-smile"></i></span>
+                            <span class="menu-text"> Dashboards </span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="menu-item">
+                        <a href="/teacher-details/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-account-group-outline text-white logo-sm"></i></span>
+                            <span class="menu-text"> Teacher Details </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/time-table/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-calendar-clock text-white logo-sm"></i></span>
+                            <span class="menu-text"> Time Table </span>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+
+            <!-- ========== Topbar Start ========== -->
+            <div class="navbar-custom">
+                <div class="topbar">
+                    <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
+                        <button class="button-toggle-menu">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </div>
+
+                    <ul class="topbar-menu d-flex align-items-center gap-4">
+
+                        <li class="d-none d-md-inline-block">
+                            <a class="nav-link" href="#" data-bs-toggle="fullscreen">
+                                <i class="mdi mdi-fullscreen font-size-24"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-link" id="theme-mode">
+                            <i class="bx bx-moon font-size-24"></i>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- ========== Topbar End ========== -->
+
+            <div class="px-3">
+
+                <!-- Start Content-->
+                <div class="container-fluid mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            {% if messages %}
+                            <div class="alert alert-success" role="alert">
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <button type="button"
+                                        class="btn btn-warning rounded-pill waves-effect waves-light mb-3 p-3"
+                                        data-bs-toggle="modal" data-bs-target="#con-close-modal">
+                                        Add Teacher
+                                    </button>
+
+                                    <!-- sample modal content -->
+
+                                    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Fill Teacher Details</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-4">
+                                                    <form method="post" action="/teacher-details/">
+                                                        {% csrf_token %}
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label for="field-1" class="form-label">Name</label>
+                                                                    <input type="text" class="form-control" id="field-1"
+                                                                        name="fullname" placeholder="John" required>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label for="field-3"
+                                                                        class="form-label">Address</label>
+                                                                    <input type="text" class="form-control" id="field-3"
+                                                                        name="address" placeholder="Address" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label for="field-3"
+                                                                        class="form-label">Email</label>
+                                                                    <input type="email" class="form-control"
+                                                                        id="field-3" placeholder="Email" name="email"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label for="field-3"
+                                                                        class="form-label">Phone</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="field-3" placeholder="(+91)-7898655432"
+                                                                        name="phone" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label for="field-3" class="form-label">Subject
+                                                                        Alloted</label>
+                                                                    <input type="text" class="form-control" id="field-3"
+                                                                        placeholder=" Name must be Same as uploaded in Time Table "
+                                                                        name="subject" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label for="field-3" class="form-label">Login
+                                                                        Password</label>
+                                                                    <input type="password" class="form-control"
+                                                                        placeholder="Set A Unique Login Password"
+                                                                        id="field-3" name="password" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary waves-effect"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" id='submit_btn'
+                                                        class="btn btn-info waves-effect waves-light">Save
+                                                    </button>
+                                                    <button class="btn btn-info" id="spinner" style="display: none;"
+                                                        type="button" disabled>
+                                                        <span class="spinner-border spinner-border-sm"
+                                                            aria-hidden="true"></span>
+                                                        <span role="status">submiting...</span>
+                                                    </button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <table id="datatable-buttons"
+                                        class="table table-striped dt-responsive nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Address</th>
+                                                <th>Phone</th>
+                                                <th>Subject</th>
+                                                <th>Remove</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                            {% for teacher in teacher_details %}
+                                            <tr>
+                                                <td>{{teacher.fullname}}</td>
+                                                <td>{{teacher.email}}</td>
+                                                <td>{{teacher.address}}</td>
+                                                <td>{{teacher.phone}}</td>
+                                                <td>{{teacher.subject}}</td>
+                                                <td>
+                                                    <a href="/teacher-details/{{teacher.email}}"
+                                                        class="btn btn-danger rounded-5 px-3">Delete</a>
+                                                </td>
+                                                <td>
+
+                                                    <button type="button"
+                                                        class="btn btn-success waves-effect waves-light"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#update_{{teacher.phone}}">{{teacher.status}}</button>
+
+                                                    <!-- Modals -->
+                                                    <div id="update_{{teacher.phone}}" class="modal fade" tabindex="-1"
+                                                        role="dialog" aria-hidden="true" style="display: none;">
+                                                        <div class="modal-dialog modal-dialog-scrollable">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update The
+                                                                        {{teacher.fullname}} Status
+                                                                    </h4>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body p-4">
+                                                                    <form method="post"
+                                                                        action="/update_teacher_details/{{teacher.email}}">
+                                                                        {% csrf_token %}
+                                                                        <div class="input-group mb-3">
+                                                                            <label class="input-group-text"
+                                                                                for="inputGroupSelect01">Options</label>
+                                                                            <select class="form-select" name="status"
+                                                                                id="inputGroupSelect01">
+                                                                                <option selected value="active">Active
+                                                                                </option>
+                                                                                <option value="deactive">Deactivate
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary waves-effect"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-info waves-effect waves-light">Save
+                                                                        changes</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal -->
+
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+
+                </div> <!-- content -->
+
+            </div>
+            <!-- End Page content -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- App js -->
+        <script src="{%static 'assets/js/vendor.min.js'%}"></script>
+        <script src="{% static 'assets/js/app.js'%}"></script>
+
+        <!-- third party js -->
+        <script src="{%static 'assets/libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+        <script src="{%static 'assets/libs/datatables.net-buttons/js/buttons.flash.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-select/js/dataTables.select.min.js'%}"></script>
+        <script src="{% static 'assets/libs/pdfmake/build/pdfmake.min.js'%}"></script>
+        <script src="{% static 'assets/libs/pdfmake/build/vfs_fonts.js'%}"></script>
+        <!-- third party js ends -->
+
+        <!-- Datatables js -->
+        <script src="{%static 'assets/js/pages/datatables.js'%}"></script>
+
+        <script>
+            submit_btn = document.getElementById('submit_btn');
+            spinner = document.getElementById('spinner');
+
+            submit_btn.addEventListener('click', () => {
+                inputs = document.getElementsByTagName('input');
+                count=1;
+                for (let i = 0; i < inputs.length-3; i++) {
+                    count=count+1;
+                    if (inputs[i].value == '') {
+                        break;
+                    }
+                    else{
+                        console.log(count,inputs.length);
+                        if(count==inputs.length-3){
+                            spinner.style.display = 'block';
+                submit_btn.style.display = 'none';
+                        }
+                    }
+                }
+                console.log(inputs);
+            });
+        </script>
+</body>
+
+
+</html>

@@ -1,0 +1,377 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
+
+
+<!-- Mirrored from myrathemes.com/dashtrap//teacher_home/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 08:02:17 GMT -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>EmarkBook | Teacher Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Myra Studio" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico'%}">
+
+    <!-- App css -->
+    <link href="{%static 'assets/css/style.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.min.css'%}" rel="stylesheet" type="text/css">
+    <script src="{% static 'assets/js/config.js'%}"></script>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="layout-wrapper">
+
+        <!-- ========== Left Sidebar ========== -->
+        <div class="main-menu">
+            <!-- Brand Logo -->
+            <div class="logo-box">
+                <!-- Brand Logo Light -->
+                <a href="/teacher_home/" class="logo-light">
+                    <i class="mdi mdi-36px mdi-book-education text-white logo-sm"></i>
+                    <h1 class="logo-lg">Teacher</h1>
+                </a>
+
+                <!-- Brand Logo Dark -->
+                <a href="/teacher_home/" class="logo-dark">
+                    <h1 class="logo-lg">Teacher</h1>
+                </a>
+            </div>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="app-menu">
+
+
+                    <li class="menu-item">
+                        <a href="/teacher_home/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bxs-home-smile"></i></span>
+                            <span class="menu-text"> Dashboards </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/mst-1_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> MST-1 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/mst-2_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> MST-2 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-1_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-1 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-2_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-2 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-3_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-3 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/attendence-marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-table-edit text-white logo-sm"></i></span>
+                            <span class="menu-text">Attendence</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/fill-stu-details/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-account-group-outline text-white logo-sm"></i></span>
+                            <span class="menu-text">Student Details</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <!-- ========== Topbar Start ========== -->
+            <div class="navbar-custom">
+                <div class="topbar">
+                    <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
+
+                        <!-- Brand Logo -->
+                        <div class="logo-box">
+                            <!-- Brand Logo Light -->
+                            <a href="/teacher_home/" class="logo-light">
+                                <img src="{%static 'assets/images/logo-light.png'%}" alt="logo" class="logo-lg"
+                                    height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm"
+                                    height="22">
+                            </a>
+
+                            <!-- Brand Logo Dark -->
+                            <a href="/teacher_home/" class="logo-dark">
+                                <img src="{% static 'assets/images/logo-dark.png'%}" alt="dark logo" class="logo-lg"
+                                    height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm"
+                                    height="22">
+                            </a>
+                        </div>
+
+                        <!-- Sidebar Menu Toggle Button -->
+                        <button class="button-toggle-menu">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </div>
+
+                    <ul class="topbar-menu d-flex align-items-center gap-4">
+
+                        <li class="d-none d-md-inline-block">
+                            <a class="nav-link" href="#" data-bs-toggle="fullscreen">
+                                <i class="mdi mdi-fullscreen font-size-24"></i>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-link" id="theme-mode">
+                            <i class="bx bx-moon font-size-24"></i>
+                        </li>
+
+                        <li>
+
+                            <p>
+                            <h4>
+                                {{teacher_data.name}}
+                            </h4>
+                            {% if teacher_data.status == "active"%}
+                            Status : <div class="bg-success rounded-5 border-success"
+                                style="height: 10px; width: 10px; display: inline-flex;"></div> <span
+                                class="text-capitalize">
+                                {{teacher_data.status}}
+                            </span>
+                            {% else %}
+                            Status : <div class="bg-danger rounded-5 border-success"
+                                style="height: 10px; width: 10px; display: inline-flex;"></div> <span
+                                class="text-capitalize">
+                                {{teacher_data.status}}
+                            </span>
+                            {% endif %}
+                            </p>
+                        </li>
+
+                        <li>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- ========== Topbar End ========== -->
+
+            <div class="px-3">
+
+                <!-- Start Content-->
+                <div class="container">
+
+                    <!-- start page title -->
+                    <div class="py-3 py-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h4 class="page-title mb-0">Dashboard</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-none d-lg-block">
+                                    <ol class="breadcrumb m-0 float-end">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Teacher</a></li>
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="container ">
+
+                        <div class="row justify-content-center align-items-center d-flex ">
+                            <!-- MST-1 Toppers -->
+                            <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+                                <table class="bg-info text-dark rounded-2">
+                                    <h4 class="px-2">MST - 1 Toppers</h4>
+                                    {% if topper_1_mst_1.mst_1_marks == None %}
+                                    <h5 class="mt-2">No Data Available</h5>
+                                    {%else%}
+                                    <thead>
+                                        <tr>
+                                            <th class="p-2">Name</th>
+                                            <th class="p-2">Roll No</th>
+                                            <th class="p-2">Marks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="px-2">{{topper_1_mst_1.fullname}}</td>
+                                            <td class="px-2">{{topper_1_mst_1.roll_no}}</td>
+                                            <td class="px-2">{{topper_1_mst_1.mst_1_marks}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-2">{{topper_2_mst_1.fullname}}</td>
+                                            <td class="px-2">{{topper_2_mst_1.roll_no}}</td>
+                                            <td class="px-2">{{topper_2_mst_1.mst_1_marks}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-2">{{topper_3_mst_1.fullname}}</td>
+                                            <td class="px-2">{{topper_3_mst_1.roll_no}}</td>
+                                            <td class="px-2">{{topper_3_mst_1.mst_1_marks}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <p>Failed Students : {{failed_stu_mst_1}}</p>
+                                    {%endif%}
+                                </table>
+                            </div>
+                            <!-- MST 2 Toppers -->
+                            <div class="col-4  d-flex justify-content-center align-items-center flex-column">
+                                <table class="bg-success text-dark rounded-2">
+                                    <h4 class="px-2">MST - 2 Toppers</h4>
+                                    {% if topper_1_mst_2.mst_2_marks == None %}
+                                    <h5 class="mt-2">No Data Available</h5>
+                                    {%else%}
+                                    <thead>
+                                        <tr>
+                                            <th class="p-2">Name</th>
+                                            <th class="p-2">Roll No</th>
+                                            <th class="p-2">Marks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="px-2">{{topper_1_mst_2.fullname}}</td>
+                                            <td class="px-2">{{topper_1_mst_2.roll_no}}</td>
+                                            <td class="px-2">{{topper_1_mst_2.mst_2_marks}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-2">{{topper_2_mst_2.fullname}}</td>
+                                            <td class="px-2">{{topper_2_mst_2.roll_no}}</td>
+                                            <td class="px-2">{{topper_2_mst_2.mst_2_marks}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-2">{{topper_3_mst_2.fullname}}</td>
+                                            <td class="px-2">{{topper_3_mst_2.roll_no}}</td>
+                                            <td class="px-2">{{topper_3_mst_2.mst_2_marks}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <p>Failed Students : {{failed_stu_mst_2}}</p>
+                                    {%endif%}
+                                </table>
+                            </div>
+
+                            <!-- Attend / Total Lectures -->
+                            <div class="col-4   d-flex justify-content-center align-items-center flex-column">
+                                <table class="bg-warning text-dark rounded-2">
+                                    <h4 class="px-2">Total / Attended Lectures</h4>
+                                    <p class="p-0 mb-2 text-dark-emphasis">Total Lectures : {{total_lect}}</p>
+                                    <thead>
+                                        <tr>
+                                            <th class="p-2">Name</th>
+                                            <th class="p-2">Roll No</th>
+                                            <th class="p-2">Attendence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for stu in attended_lect%}
+                                        <tr>
+                                            {%for attendence in stu%}
+                                            <td class="px-2">{{attendence}}</td>
+                                            {%endfor%}
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!--  Internal Marks-->
+                            <div class="col-12 my-4 d-flex justify-content-center align-items-center flex-column">
+                                <table class="bg-pink text-dark rounded-2">
+                                    <h4 class="px-2">Internel Marks</h4>
+                                    <thead>
+                                        <tr>
+                                            <th class="p-2">Name</th>
+                                            <th class="p-2">Roll No</th>
+                                            <th class="p-2">MST-1</th>
+                                            <th class="p-2">MST-2 </th>
+                                            <th class="p-2">Asgmt-1</th>
+                                            <th class="p-2">Asgmt-2</th>
+                                            <th class="p-2">Asgmt-3 </th>
+                                            <th class="p-2">Attendenece </th>
+                                            <th class="p-2">Internal</th>
+                                            <th class="p-2">Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for stu in internal_marks %}
+                                        <tr>
+                                            {% for marks in stu %}
+                                            <td class="px-2">{{marks}}</td>
+                                            {%endfor%}
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+    <!-- App js -->
+    <script src="{%static 'assets/js/vendor.min.js'%}"></script>
+    <script src="{%static 'assets/js/app.js'%}"></script>
+
+    <!-- Dashboard init-->
+    <script src="{% static 'assets/js/pages/dashboard.js'%}"></script>
+
+</body>
+
+
+<!-- Mirrored from myrathemes.com/dashtrap//teacher_home/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 08:02:17 GMT -->
+
+</html>

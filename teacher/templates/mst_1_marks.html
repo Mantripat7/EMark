@@ -1,0 +1,335 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
+
+
+<!-- Mirrored from myrathemes.com/dashtrap/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 08:02:32 GMT -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>MST - 1 | EmarkBook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Myra Studio" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico'%}">
+
+    <!-- third party css -->
+    <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css'%}"
+        rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css'%}" rel="stylesheet"
+        type="text/css" />
+    <!-- third party css end -->
+
+    <!-- App css -->
+    <link href="{% static 'assets/css/style.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.min.css'%}" rel="stylesheet" type="text/css">
+    <script src="{% static 'assets/js/config.js'%}"></script>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="layout-wrapper">
+
+        <!-- ========== Left Sidebar ========== -->
+        <div class="main-menu">
+            <!-- Brand Logo -->
+            <div class="logo-box">
+                <!-- Brand Logo Light -->
+                <a href="/teacher_home/" class="logo-light">
+                    <i class="mdi mdi-36px mdi-book-education text-white logo-sm"></i>
+                   <h1 class="logo-lg">Teacher</h1>
+                </a>
+
+                <!-- Brand Logo Dark -->
+                <a href="/teacher_home/" class="logo-dark">
+                    <h1 class="logo-lg">Teacher</h1>
+                </a>
+            </div>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="app-menu">
+
+
+                    <li class="menu-item">
+                        <a href="/teacher_home/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bxs-home-smile"></i></span>
+                            <span class="menu-text"> Dashboards </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/mst-1_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> MST-1 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/mst-2_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> MST-2 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-1_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-1 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-2_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-2 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/assignment-3_marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-book-open-page-variant text-white logo-sm"></i></span>
+                            <span class="menu-text"> Assignment-3 Marks</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/attendence-marks/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-table-edit text-white logo-sm"></i></span>
+                            <span class="menu-text">Attendence</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/fill-stu-details/" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-16px m
+                                mdi-account-group-outline text-white logo-sm"></i></span>
+                            <span class="menu-text">Student Details</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            
+            <!-- ========== Topbar Start ========== -->
+            <div class="navbar-custom">
+                <div class="topbar">
+                    <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
+
+                        <!-- Brand Logo -->
+                        <div class="logo-box">
+                            <!-- Brand Logo Light -->
+                            <a href="/teacher_home/" class="logo-light">
+                                <img src="{%static 'assets/images/logo-light.png'%}" alt="logo" class="logo-lg" height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm" height="22">
+                            </a>
+
+                            <!-- Brand Logo Dark -->
+                            <a href="/teacher_home/" class="logo-dark">
+                                <img src="{% static 'assets/images/logo-dark.png'%}" alt="dark logo" class="logo-lg" height="22">
+                                <img src="{% static 'assets/images/logo-sm.png'%}" alt="small logo" class="logo-sm" height="22">
+                            </a>
+                        </div>
+
+                        <!-- Sidebar Menu Toggle Button -->
+                        <button class="button-toggle-menu">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </div>
+
+                    <ul class="topbar-menu d-flex align-items-center gap-4">
+
+                        <li class="d-none d-md-inline-block">
+                            <a class="nav-link" href="#" data-bs-toggle="fullscreen">
+                                <i class="mdi mdi-fullscreen font-size-24"></i>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-link" id="theme-mode">
+                            <i class="bx bx-moon font-size-24"></i>
+                        </li>
+
+                        <li >
+                            
+                            <p> <h4>
+                                {{teacher_data.name}}
+                            </h4>
+                                {% if teacher_data.status == "active"%}
+                                Status : <div class="bg-success rounded-5 border-success" style="height: 10px; width: 10px; display: inline-flex;"></div> <span class="text-capitalize">
+                                    {{teacher_data.status}}
+                                </span> 
+                                {% else %}
+                                Status : <div class="bg-danger rounded-5 border-success" style="height: 10px; width: 10px; display: inline-flex;"></div> <span class="text-capitalize">
+                                    {{teacher_data.status}}
+                                </span> 
+                                {% endif %}
+                            </p>
+                        </li>
+                        
+                        <li>
+
+                        </li>
+          
+                    </ul>
+                </div>
+            </div>
+            <!-- ========== Topbar End ========== -->
+
+            <div class="px-3">
+
+                <!-- Start Content-->
+                <div class="container-fluid mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            {% if messages %}
+                            <div class="alert alert-secondary" role="alert">
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <button type="button" class="btn btn-warning rounded-pill waves-effect waves-light p-3 m-2"
+                                        data-bs-toggle="modal" data-bs-target="#con-close-modal">
+                                        Add Marks
+                                    </button>
+
+                                    <!-- sample modal content -->
+
+                                    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Enter marks</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-4">
+                                                    <form method="post" action="/mst-1_marks/">
+                                                        {% csrf_token %}
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Roll No.</th>
+                                                                    <th>Marks</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for marks in marks_details %}
+                                                                <tr>
+                                                                    <td>{{marks.fullname}}</td>
+                                                                    <td>{{marks.roll_no}}</td>
+                                                                    <td >
+                                                                                <input type="numbrt" class="form-control d-inline"
+                                                                                    id="field-1" name="{{marks.roll_no}}" value="{{marks.mst_1_marks}}" placeholder
+                                                                                    placeholder="John">
+                                                                    </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary waves-effect"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit"
+                                                        class="btn btn-info waves-effect waves-light">Save
+                                                        changes</button>
+                                                </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table id="datatable-buttons"
+                                        class="table table-striped dt-responsive nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Roll No.</th>
+                                                <th>Name</th>
+                                                <th>Marks</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                            {% for marks in marks_details %}
+                                            <tr>
+                                                <td>{{marks.roll_no}}</td>
+                                                <td>{{marks.fullname}}</td>
+                                                <td>{{marks.mst_1_marks}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+
+                </div> <!-- content -->
+
+
+
+            </div>
+            <!-- End Page content -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- App js -->
+        <script src="{%static 'assets/js/vendor.min.js'%}"></script>
+        <script src="{% static 'assets/js/app.js'%}"></script>
+
+        <!-- third party js -->
+        <script src="{%static 'assets/libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+        <script src="{%static 'assets/libs/datatables.net-buttons/js/buttons.flash.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-select/js/dataTables.select.min.js'%}"></script>
+        <script src="{% static 'assets/libs/pdfmake/build/pdfmake.min.js'%}"></script>
+        <script src="{% static 'assets/libs/pdfmake/build/vfs_fonts.js'%}"></script>
+        <!-- third party js ends -->
+
+        <!-- Datatables js -->
+        <script src="{%static 'assets/js/pages/datatables.js'%}"></script>
+
+
+</body>
+
+<!-- Mirrored from myrathemes.com/dashtrap/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 08:02:37 GMT -->
+
+</html>
